@@ -20,6 +20,12 @@ variable "supabase_db_password" {
   sensitive   = true
 }
 
+variable "supabase_region" {
+  description = "AWS region for Supabase project"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "vercel_api_token" {
   description = "Vercel API token"
   type        = string

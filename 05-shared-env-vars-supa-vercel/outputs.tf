@@ -1,6 +1,6 @@
 output "supabase_project_id" {
   description = "Supabase project ID"
-  value       = supabase_project.project.id
+  value       = supabase_project.main.id
 }
 
 output "supabase_url" {
