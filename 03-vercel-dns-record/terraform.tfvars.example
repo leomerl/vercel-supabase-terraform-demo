@@ -1,0 +1,30 @@
+vercel_api_token = "your-vercel-api-token"
+domain           = "example.com"
+team_id          = "" # Optional: Leave empty for personal account
+
+dns_records = [
+  {
+    name  = "@"
+    type  = "A"
+    value = "192.0.2.1"
+    ttl   = 3600
+  },
+  {
+    name  = "www"
+    type  = "CNAME"
+    value = "cname.vercel-dns.com"
+    ttl   = 3600
+  },
+  {
+    name  = "@"
+    type  = "MX"
+    value = "10 mail.example.com"
+    ttl   = 3600
+  },
+  {
+    name  = "@"
+    type  = "TXT"
+    value = "v=spf1 include:_spf.example.com ~all"
+    ttl   = 3600
+  }
+]
