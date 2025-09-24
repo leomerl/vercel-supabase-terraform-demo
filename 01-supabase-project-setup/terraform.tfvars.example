@@ -1,0 +1,5 @@
+supabase_access_token    = "your-supabase-access-token"
+supabase_organization_id = "your-org-id"
+database_password        = "your-secure-database-password"
+project_name             = "terraform-demo-project"
+region                   = "us-east-1"
