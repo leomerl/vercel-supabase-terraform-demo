@@ -21,6 +21,12 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# Terragrunt
+.terragrunt-cache/
+terragrunt.hcl.lock
+*.terragrunt.hcl.lock
+.terragrunt/
+
 # Local environment files
 .env
 .env.local
@@ -33,3 +39,5 @@ terraform.rc
 *.swo
 *~
 .DS_Store
+
+.mcp.json
