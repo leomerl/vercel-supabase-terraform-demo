@@ -28,8 +28,10 @@ Type `yes` when prompted to confirm.
 ```bash
 terraform output
 # Or for specific outputs:
-terraform output -raw supabase_api_key
+terraform output -raw supabase_anon_key
+terraform output -raw supabase_service_role_key
 terraform output -raw supabase_database_url
+terraform output -raw supabase_url
 ```
 
 **To destroy** the project when done:

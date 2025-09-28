@@ -8,7 +8,8 @@ output "domain" {
   value       = vercel_project_domain.custom_domain.domain
 }
 
-output "apex_name" {
-  description = "The apex name of the domain"
-  value       = vercel_project_domain.custom_domain.apex_name
-}
+# Note: apex_name attribute is not available in this provider version
+# output "apex_name" {
+#   description = "The apex name of the domain"
+#   value       = vercel_project_domain.custom_domain.apex_name
+# }

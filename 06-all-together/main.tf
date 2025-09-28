@@ -10,18 +10,23 @@ resource "supabase_project" "main" {
   }
 }
 
+# Retrieve API keys using data source
+data "supabase_apikeys" "keys" {
+  project_ref = supabase_project.main.id
+}
+
 # Vercel Project
 resource "vercel_project" "main" {
   name      = var.project_name
   framework = var.framework
 
-  dynamic "git_repository" {
-    for_each = var.git_repository != "" ? [1] : []
-    content {
-      type = "github"
-      repo = var.git_repository
-    }
-  }
+  # Git repository configuration is optional
+  # If git_repository variable is provided, configure the connection
+  # Note: Requires Vercel for GitHub/GitLab/Bitbucket to be installed
+  git_repository = var.git_repository != "" ? {
+    type = "github"
+    repo = var.git_repository
+  } : null
 
   environment = [
     {
@@ -31,7 +36,7 @@ resource "vercel_project" "main" {
     },
     {
       key    = "NEXT_PUBLIC_SUPABASE_ANON_KEY"
-      value  = supabase_project.main.api_keys[0].api_key
+      value  = data.supabase_apikeys.keys.anon_key
       target = ["production", "preview", "development"]
     }
   ]

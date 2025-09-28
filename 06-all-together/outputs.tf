@@ -3,9 +3,14 @@ output "vercel_project_id" {
   value       = vercel_project.main.id
 }
 
+# Retrieve database connection strings
+data "supabase_pooler" "pooler" {
+  project_ref = supabase_project.main.id
+}
+
 output "supabase_database_url" {
-  description = "The database URL for the Supabase project"
-  value       = "postgresql://postgres.${supabase_project.main.id}:${var.database_password}@aws-0-${var.region}.pooler.supabase.com:5432/postgres"
+  description = "The database URL for the Supabase project (transaction mode)"
+  value       = data.supabase_pooler.pooler.url["transaction"]
   sensitive   = true
 }
 
@@ -16,7 +21,7 @@ output "supabase_api_url" {
 
 output "supabase_anon_key" {
   description = "The anonymous API key for the Supabase project"
-  value       = supabase_project.main.api_keys[0].api_key
+  value       = data.supabase_apikeys.keys.anon_key
   sensitive   = true
 }
 
