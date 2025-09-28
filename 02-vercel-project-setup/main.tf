@@ -2,13 +2,13 @@ resource "vercel_project" "main" {
   name      = var.project_name
   framework = var.framework
 
-  dynamic "git_repository" {
-    for_each = var.git_repository != "" ? [1] : []
-    content {
-      type = "github"
-      repo = var.git_repository
-    }
-  }
+  # Git repository configuration (if provided)
+  # Note: In v1.x of the provider, git_repository is configured differently
+  # Commenting out for now as it requires a different structure
+  # git_repository = var.git_repository != "" ? {
+  #   type = "github"
+  #   repo = var.git_repository
+  # } : null
 
   environment = [
     {
